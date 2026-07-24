@@ -86,7 +86,7 @@ OPENAI_API_BASE,GOOGLE_COMPLETIONS_API,MISTRAL_API_BASE,COHERE_API_BASE,ANTHROPI
 
 | KEY                          | 名称              | 默认值      | 描述                                                                     |
 |------------------------------|-----------------|----------|------------------------------------------------------------------------|
-| AI_PROVIDER                  | AI提供商           | `auto`   | 可选值 `auto, openai, azure, workers, gemini, mistral, cohere, anthropic` |
+| AI_PROVIDER                  | AI提供商           | `auto`   | 可选值 `auto, openai, azure, workers, gemini, mistral, cohere, anthropic, g4f` |
 | AI_IMAGE_PROVIDER            | AI图片提供商         | `auto`   | 可选值 `auto, openai, azure, workers`                                     |
 | SYSTEM_INIT_MESSAGE          | 全局默认初始化消息       | `null`   | 根据绑定的语言自动选择默认值                                                         |
 | ~~SYSTEM_INIT_MESSAGE_ROLE~~ | ~~全局默认初始化消息角色~~ | `system` | 废弃                                                                     |
@@ -205,6 +205,17 @@ OPENAI_API_BASE,GOOGLE_COMPLETIONS_API,MISTRAL_API_BASE,COHERE_API_BASE,ANTHROPI
 | XAI_API_BASE         | XAi API Base  | `https://api.x.ai` |
 | XAI_CHAT_MODEL       | XAi API Model | `grok-2-latest`    |
 | XAI_CHAT_MODELS_LIST | XAi 聊天模型列表    | `''`               |
+
+### G4F (g4f.space)
+
+> G4F是一个免费的AI服务提供商，提供OpenAI兼容的API接口。
+
+| KEY                  | 名称            | 默认值                     |
+|----------------------|---------------|-------------------------|
+| G4F_API_KEY          | G4F API Key   | `null`                  |
+| G4F_API_BASE         | G4F API Base  | `https://g4f.space/v1` |
+| G4F_CHAT_MODEL       | G4F API Model | `gpt-4o`                |
+| G4F_CHAT_MODELS_LIST | G4F 聊天模型列表    | `''`                    |
 
 
 ## 支持命令

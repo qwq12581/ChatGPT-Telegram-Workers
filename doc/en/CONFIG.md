@@ -86,7 +86,7 @@ All `xxx_MODELS_LIST` can be a URL or a JSON array string. When it is empty, it 
 
 | KEY                          | Name                                     | Default  | Description                                                                |
 |------------------------------|------------------------------------------|----------|----------------------------------------------------------------------------|
-| AI_PROVIDER                  | AI provider                              | `auto`   | Options `auto, openai, azure, workers, gemini, mistral, cohere, anthropic` |
+| AI_PROVIDER                  | AI provider                              | `auto`   | Options `auto, openai, azure, workers, gemini, mistral, cohere, anthropic, g4f` |
 | AI_IMAGE_PROVIDER            | AI image provider                        | `auto`   | Options `auto, openai, azure, workers`                                     |
 | SYSTEM_INIT_MESSAGE          | Default initialization message.          | `null`   | Automatically select default values based on the bound language.           |
 | ~~SYSTEM_INIT_MESSAGE_ROLE~~ | ~~Default initialization message role.~~ | `system` | Deprecated                                                                 |
@@ -205,6 +205,17 @@ All `xxx_MODELS_LIST` can be a URL or a JSON array string. When it is empty, it 
 | XAI_API_BASE         | XAi API Base        | `https://api.x.ai` |
 | XAI_CHAT_MODEL       | XAi API Model       | `grok-2-latest`    |
 | XAI_CHAT_MODELS_LIST | XAi Chat Model List | `''`               |
+
+### G4F (g4f.space)
+
+> G4F is a free AI service provider that offers OpenAI-compatible API interfaces.
+
+| KEY                  | Name                | Default                     |
+|----------------------|---------------------|-------------------------|
+| G4F_API_KEY          | G4F API Key         | `null`                  |
+| G4F_API_BASE         | G4F API Base        | `https://g4f.space/v1` |
+| G4F_CHAT_MODEL       | G4F API Model       | `gpt-4o`                |
+| G4F_CHAT_MODELS_LIST | G4F Chat Model List | `''`                    |
 
 
 ## Command
