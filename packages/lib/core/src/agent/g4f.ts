@@ -23,12 +23,12 @@ function g4fApiKey(context: AgentUserConfig): string {
 
 // G4F 端点配置
 const G4F_ENDPOINTS = {
-    'v1': 'https://g4f.space/v1', // 需要API密钥
+    'v1': 'https://g4f.space/v1', // 需要API密钥，支持web_search和全部模型
+    'gemini': 'https://g4f.space/api/gemini/v1', // 免费，不需要密钥，仅支持Gemini模型
     'groq': 'https://g4f.space/api/groq', // 免费，不需要密钥
     'ollama': 'https://g4f.space/api/ollama', // 免费，不需要密钥
     'pollinations': 'https://g4f.space/api/pollinations', // 免费，不需要密钥
     'nvidia': 'https://g4f.space/api/nvidia', // 免费，不需要密钥
-    'gemini': 'https://g4f.space/api/gemini', // 免费，不需要密钥
     'auto': 'https://g4f.space/api/auto', // 免费，自动选择
 };
 
@@ -61,28 +61,9 @@ export class G4F implements ChatAgent {
             stream: onStream != null,
         };
 
-        // 如果启用了网络搜索，添加tools参数
+        // 如果启用了网络搜索，添加web_search参数 (仅/v1端点支持，需配合Gemini系列模型)
         if (context.G4F_ENABLE_WEB_SEARCH) {
-            body.tools = [
-                {
-                    type: 'function',
-                    function: {
-                        name: 'web_search',
-                        description: 'Search the internet for current information',
-                        parameters: {
-                            type: 'object',
-                            properties: {
-                                query: {
-                                    type: 'string',
-                                    description: 'Search query',
-                                },
-                            },
-                            required: ['query'],
-                        },
-                    },
-                },
-            ];
-            body.tool_choice = 'auto'; // 允许模型决定是否调用工具
+            body.web_search = true;
         }
 
         return convertStringToResponseMessages(requestChatCompletions(url, header, body, onStream, null));

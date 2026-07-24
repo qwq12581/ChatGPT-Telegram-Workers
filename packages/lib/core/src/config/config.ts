@@ -80,8 +80,8 @@ export class GeminiConfig {
     GOOGLE_API_KEY: string | null = null;
     // Google Gemini API: https://ai.google.dev/gemini-api/docs/openai#rest
     GOOGLE_API_BASE = 'https://generativelanguage.googleapis.com/v1beta';
-    // Google Gemini Model (最新稳定版：gemini-3.5-flash)
-    GOOGLE_CHAT_MODEL = 'gemini-3.5-flash';
+    // Google Gemini Model (最新稳定版：gemini-2.5-flash)
+    GOOGLE_CHAT_MODEL = 'gemini-2.5-flash';
     // Google Chat Models List
     GOOGLE_CHAT_MODELS_LIST = '';
     // Google Chat API Extra Params
@@ -173,18 +173,18 @@ export class XAIConfig {
 
 // -- G4F 配置 --
 export class G4FConfig {
-    // G4F api key (可选，g4f.space通常不需要key，但某些端点需要)
+    // G4F api key (g4f.space /v1 端点需要API密钥，/api/gemini/v1 端点不需要)
     G4F_API_KEY: string[] = [];
-    // G4F api base (注意：/v1端点需要API密钥，/api/groq等免费端点不需要)
+    // G4F api base (默认使用/v1端点，支持web_search和全部模型)
     G4F_API_BASE = 'https://g4f.space/v1';
-    // G4F api model (默认使用Gemini最新模型)
-    G4F_CHAT_MODEL = 'gemini-3.5-flash';
+    // G4F api model (g4f.space上最新可用的Gemini模型：gemini-2.5-flash)
+    G4F_CHAT_MODEL = 'gemini-2.5-flash';
     // G4F api chat models list
     G4F_CHAT_MODELS_LIST = '';
     // G4F Chat API Extra Params
     G4F_CHAT_EXTRA_PARAMS: Record<string, any> = {};
-    // G4F 启用网络搜索功能 (实验性功能，可能仅在特定模型/端点上可用)
-    G4F_ENABLE_WEB_SEARCH = false;
+    // G4F 启用网络搜索功能 (仅/v1端点支持，需配合Gemini系列模型)
+    G4F_ENABLE_WEB_SEARCH = true;
     // G4F 网络搜索参数 (可自定义)
     G4F_WEB_SEARCH_PARAMS: Record<string, any> = {};
 }
