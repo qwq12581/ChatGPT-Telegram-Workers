@@ -80,8 +80,8 @@ export class GeminiConfig {
     GOOGLE_API_KEY: string | null = null;
     // Google Gemini API: https://ai.google.dev/gemini-api/docs/openai#rest
     GOOGLE_API_BASE = 'https://generativelanguage.googleapis.com/v1beta';
-    // Google Gemini Model
-    GOOGLE_CHAT_MODEL = 'gemini-1.5-flash';
+    // Google Gemini Model (最新稳定版：gemini-3.5-flash)
+    GOOGLE_CHAT_MODEL = 'gemini-3.5-flash';
     // Google Chat Models List
     GOOGLE_CHAT_MODELS_LIST = '';
     // Google Chat API Extra Params
@@ -177,8 +177,8 @@ export class G4FConfig {
     G4F_API_KEY: string[] = [];
     // G4F api base (注意：/v1端点需要API密钥，/api/groq等免费端点不需要)
     G4F_API_BASE = 'https://g4f.space/v1';
-    // G4F api model
-    G4F_CHAT_MODEL = 'gpt-4o';
+    // G4F api model (默认使用Gemini最新模型)
+    G4F_CHAT_MODEL = 'gemini-3.5-flash';
     // G4F api chat models list
     G4F_CHAT_MODELS_LIST = '';
     // G4F Chat API Extra Params
