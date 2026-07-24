@@ -173,8 +173,8 @@ export class XAIConfig {
 
 // -- G4F 配置 --
 export class G4FConfig {
-    // G4F api key (可选，g4f.space可能不需要key)
-    G4F_API_KEY: string | null = null;
+    // G4F api key (可选，g4f.space通常不需要key)
+    G4F_API_KEY: string[] = [];
     // G4F api base
     G4F_API_BASE = 'https://g4f.space/v1';
     // G4F api model

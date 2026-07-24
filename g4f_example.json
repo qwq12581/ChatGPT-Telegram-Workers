@@ -1,0 +1,11 @@
+{
+  "TELEGRAM_AVAILABLE_TOKENS": "YOUR_TELEGRAM_BOT_TOKEN",
+  "CHAT_WHITE_LIST": "YOUR_USER_ID",
+  "AI_PROVIDER": "g4f",
+  "G4F_API_KEY": "",
+  "G4F_API_BASE": "https://g4f.space/v1",
+  "G4F_CHAT_MODEL": "gpt-4o",
+  "G4F_CHAT_MODELS_LIST": "",
+  "SYSTEM_INIT_MESSAGE": "你是一个有帮助的AI助手，请用中文回答。",
+  "I_AM_A_GENEROUS_PERSON": false
+}
