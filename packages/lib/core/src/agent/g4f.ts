@@ -38,7 +38,11 @@ export class G4F implements ChatAgent {
 
     readonly enable: AgentEnable = () => true;
     readonly model: AgentModel = ctx => ctx.G4F_CHAT_MODEL;
-    readonly modelList: AgentModelList = ctx => loadModelsList(ctx.G4F_CHAT_MODELS_LIST, ctx.G4F_API_BASE, bearerHeader(g4fApiKey(ctx)));
+    readonly modelList: AgentModelList = ctx => loadModelsList(ctx.G4F_CHAT_MODELS_LIST, async (url) => {
+        const header = bearerHeader(g4fApiKey(ctx));
+        const data = await fetch(url, { headers: header }).then(r => r.json()) as any;
+        return data.data?.map((m: any) => m.id) || [];
+    });
 
     readonly request: ChatAgentRequest = async (params: LLMChatParams, context: AgentUserConfig, onStream: ChatStreamTextHandler | null): Promise<ChatAgentResponse> => {
         const { prompt, messages } = params;
