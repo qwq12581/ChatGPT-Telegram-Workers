@@ -1,0 +1,16 @@
+name = "chatgpt-telegram-workers"
+main = "./dist/index.js"
+compatibility_date = "2024-11-11"
+compatibility_flags = ["nodejs_compat_v2"]
+
+# 部署配置
+# kv_namespaces = [
+#   { binding = "DATABASE", id = "你的KV_NAMESPACE_ID", preview_id = "你的KV_PREVIEW_ID" }
+# ]
+
+# 环境变量在 Cloudflare Dashboard 中配置
+# TELEGRAM_AVAILABLE_TOKENS = "你的Telegram Token"
+# CHAT_WHITE_LIST = "你的Chat ID"
+# G4F_API_KEY = "你的g4f.space API Key"
+# G4F_CHAT_MODEL = "gemini-2.5-flash"
+# G4F_ENABLE_WEB_SEARCH = "true"
