@@ -173,9 +173,9 @@ export class XAIConfig {
 
 // -- G4F 配置 --
 export class G4FConfig {
-    // G4F api key (可选，g4f.space通常不需要key)
+    // G4F api key (可选，g4f.space通常不需要key，但某些端点需要)
     G4F_API_KEY: string[] = [];
-    // G4F api base
+    // G4F api base (注意：/v1端点需要API密钥，/api/groq等免费端点不需要)
     G4F_API_BASE = 'https://g4f.space/v1';
     // G4F api model
     G4F_CHAT_MODEL = 'gpt-4o';
@@ -183,7 +183,7 @@ export class G4FConfig {
     G4F_CHAT_MODELS_LIST = '';
     // G4F Chat API Extra Params
     G4F_CHAT_EXTRA_PARAMS: Record<string, any> = {};
-    // G4F 启用网络搜索功能 (注意：此功能可能需要额外的配置或参数)
+    // G4F 启用网络搜索功能 (实验性功能，可能仅在特定模型/端点上可用)
     G4F_ENABLE_WEB_SEARCH = false;
     // G4F 网络搜索参数 (可自定义)
     G4F_WEB_SEARCH_PARAMS: Record<string, any> = {};

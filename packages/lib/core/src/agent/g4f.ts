@@ -21,6 +21,17 @@ function g4fApiKey(context: AgentUserConfig): string {
     return context.G4F_API_KEY[Math.floor(Math.random() * length)];
 }
 
+// G4F 端点配置
+const G4F_ENDPOINTS = {
+    'v1': 'https://g4f.space/v1', // 需要API密钥
+    'groq': 'https://g4f.space/api/groq', // 免费，不需要密钥
+    'ollama': 'https://g4f.space/api/ollama', // 免费，不需要密钥
+    'pollinations': 'https://g4f.space/api/pollinations', // 免费，不需要密钥
+    'nvidia': 'https://g4f.space/api/nvidia', // 免费，不需要密钥
+    'gemini': 'https://g4f.space/api/gemini', // 免费，不需要密钥
+    'auto': 'https://g4f.space/api/auto', // 免费，自动选择
+};
+
 export class G4F implements ChatAgent {
     readonly name = 'g4f';
     readonly modelKey = getAgentUserConfigFieldName('G4F_CHAT_MODEL');
@@ -31,7 +42,15 @@ export class G4F implements ChatAgent {
 
     readonly request: ChatAgentRequest = async (params: LLMChatParams, context: AgentUserConfig, onStream: ChatStreamTextHandler | null): Promise<ChatAgentResponse> => {
         const { prompt, messages } = params;
-        const url = `${context.G4F_API_BASE}/chat/completions`;
+        
+        // 确定API基础地址
+        let apiBase = context.G4F_API_BASE;
+        // 如果是自定义端点名称，转换为实际URL
+        if (G4F_ENDPOINTS[apiBase as keyof typeof G4F_ENDPOINTS]) {
+            apiBase = G4F_ENDPOINTS[apiBase as keyof typeof G4F_ENDPOINTS];
+        }
+        
+        const url = `${apiBase}/chat/completions`;
         const header = bearerHeader(g4fApiKey(context), onStream != null);
 
         // 基础请求体
@@ -42,33 +61,28 @@ export class G4F implements ChatAgent {
             stream: onStream != null,
         };
 
-        // 如果启用了网络搜索，注入web_search工具
+        // 如果启用了网络搜索，添加tools参数
         if (context.G4F_ENABLE_WEB_SEARCH) {
-            // 支持自定义web_search参数
-            const webSearchParams = context.G4F_WEB_SEARCH_PARAMS || {};
-            body.web_search = webSearchParams.enabled !== false;
-            // 也可以通过tools方式实现搜索
-            if (webSearchParams.use_tools) {
-                body.tools = [
-                    {
-                        type: 'function',
-                        function: {
-                            name: 'web_search',
-                            description: 'Search the internet for current information',
-                            parameters: {
-                                type: 'object',
-                                properties: {
-                                    query: {
-                                        type: 'string',
-                                        description: 'Search query',
-                                    },
+            body.tools = [
+                {
+                    type: 'function',
+                    function: {
+                        name: 'web_search',
+                        description: 'Search the internet for current information',
+                        parameters: {
+                            type: 'object',
+                            properties: {
+                                query: {
+                                    type: 'string',
+                                    description: 'Search query',
                                 },
-                                required: ['query'],
                             },
+                            required: ['query'],
                         },
                     },
-                ];
-            }
+                },
+            ];
+            body.tool_choice = 'auto'; // 允许模型决定是否调用工具
         }
 
         return convertStringToResponseMessages(requestChatCompletions(url, header, body, onStream, null));
