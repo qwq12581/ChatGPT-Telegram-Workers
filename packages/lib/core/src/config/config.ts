@@ -183,6 +183,10 @@ export class G4FConfig {
     G4F_CHAT_MODELS_LIST = '';
     // G4F Chat API Extra Params
     G4F_CHAT_EXTRA_PARAMS: Record<string, any> = {};
+    // G4F 启用网络搜索功能 (注意：此功能可能需要额外的配置或参数)
+    G4F_ENABLE_WEB_SEARCH = false;
+    // G4F 网络搜索参数 (可自定义)
+    G4F_WEB_SEARCH_PARAMS: Record<string, any> = {};
 }
 
 type UserConfig = AgentShareConfig & OpenAIConfig & DallEConfig & AzureConfig & WorkersConfig & GeminiConfig & MistralConfig & CohereConfig & AnthropicConfig & DeepSeekConfig & GroqConfig & XAIConfig & G4FConfig;

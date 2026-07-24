@@ -210,12 +210,15 @@ OPENAI_API_BASE,GOOGLE_COMPLETIONS_API,MISTRAL_API_BASE,COHERE_API_BASE,ANTHROPI
 
 > G4F是一个免费的AI服务提供商，提供OpenAI兼容的API接口。
 
-| KEY                  | 名称            | 默认值                     |
-|----------------------|---------------|-------------------------|
-| G4F_API_KEY          | G4F API Key   | `null`                  |
-| G4F_API_BASE         | G4F API Base  | `https://g4f.space/v1` |
-| G4F_CHAT_MODEL       | G4F API Model | `gpt-4o`                |
-| G4F_CHAT_MODELS_LIST | G4F 聊天模型列表    | `''`                    |
+| KEY                     | 名称                | 默认值                     | 描述                              |
+|-------------------------|-------------------|-------------------------|---------------------------------|
+| G4F_API_KEY             | G4F API Key       | `null`                  | 可选，G4F通常不需要密钥                  |
+| G4F_API_BASE            | G4F API Base      | `https://g4f.space/v1` | API基础地址                         |
+| G4F_CHAT_MODEL          | G4F API Model     | `gpt-4o`                | 默认模型                           |
+| G4F_CHAT_MODELS_LIST    | G4F 聊天模型列表      | `''`                    | 模型列表，支持URL或JSON数组                   |
+| G4F_CHAT_EXTRA_PARAMS   | G4F 额外参数         | `{}`                    | 额外的API参数                        |
+| G4F_ENABLE_WEB_SEARCH   | 启用网络搜索        | `false`                 | 启用G4F的网络搜索功能（Beta）               |
+| G4F_WEB_SEARCH_PARAMS   | 网络搜索参数         | `{}`                    | 自定义网络搜索参数，支持 `use_tools` 选项 |
 
 
 ## 支持命令
