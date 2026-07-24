@@ -204,11 +204,12 @@ class Environment extends EnvironmentConfig {
             'DEEPSEEK_API_BASE',
             'GROQ_API_BASE',
             'XAI_API_BASE',
+            'G4F_API_BASE',
         ];
         for (const key of keys) {
-            const base = this.USER_CONFIG[key];
-            if (this.USER_CONFIG[key] && typeof base === 'string') {
-                this.USER_CONFIG[key] = fixApiBase(base) as any;
+            const base = (this.USER_CONFIG as any)[key];
+            if (base && typeof base === 'string') {
+                (this.USER_CONFIG as any)[key] = fixApiBase(base);
             }
         }
         this.TELEGRAM_API_DOMAIN = fixApiBase(this.TELEGRAM_API_DOMAIN);
